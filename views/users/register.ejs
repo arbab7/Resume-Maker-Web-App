@@ -1,0 +1,33 @@
+<%- include('../partials/header') %> 
+
+
+<div class="container mt-4 mb-4">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="card-title">Register</h3>
+                    <form action="/register" method="POST" novalidate class="needs-validation">
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" type="text" name="username" id="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" name="password" id="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" type="email" name="email" id="email" required>
+                        </div>
+                        <div class="d-grid gap-2 mg-3">
+                            <button class="btn btn-success">Register</button>                    
+                        </div>
+                    </form>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %> 

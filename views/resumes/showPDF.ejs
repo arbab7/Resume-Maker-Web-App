@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Maker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body class="d-flex flex-column vh-100">
+
+    <main class="container">
+
+        <div class="px-3 p-md-5 mb-3 text-white rounded bg-dark">
+            <div class="h1"><%= resume.name %></div>
+            <div class="h4"><%= resume.specialisation %></div>
+            <div><strong>Phone: </strong><%= resume.phone %></div>
+            <div><Strong>Email: </Strong><%= resume.email %></div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="text-white rounded bg-dark p-1">
+                <div class="h5 px-1 mx-1">Career Objective</div>
+            </div>
+            <div class="px-3">
+                <%= resume.summary %>
+            </div>
+        </div>
+
+        <% if (resume.education.length != 0) { %>
+            <div class="mb-3">
+                <div class="text-white rounded bg-dark p-1">
+                    <div class="h5 px-1 mx-1">Education</div>
+                </div>
+                <div>
+                    <% for (let eduField of resume.education) { %> 
+                        <div class="card mb-1">
+                            <div class="p-1 px-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="h6"><%= eduField.course %></div>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <%= eduField.duration %>
+                                    </div>
+                                </div>
+                                <div class="card-text"><%= eduField.institute %></div>
+                                <div class="card-text">Percentage: <%= eduField.percentage %></div>
+        
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        <% } %>
+        
+        <% if(resume.project.length != 0) { %>
+            <div class="mb-3">
+                <div class="text-white rounded bg-dark p-1">
+                    <div class="h5 px-1 mx-1">Projects</div>
+                </div>
+                <div>
+                    <% for (let projectField of resume.project) { %>
+                        <div class="card mb-1">
+                            <div class="p-1 px-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="h6"><%= projectField.title %></div>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <%= projectField.duration %>
+                                    </div>
+                                </div>
+                                <span class="h6">Key Skills: </span><span class="badge rounded-pill bg-dark"><%= projectField.skills %></span>
+                                <div class="card-text"><%= projectField.description %></div>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        <% } %>
+        
+        <% if (resume.training.length != 0) { %>
+            <div class="mb-3">
+                <div class="text-white rounded bg-dark p-1">
+                    <div class="h5 px-1 mx-1">Trainings</div>
+                </div>
+                <div>
+                    <% for (let trainingField of resume.training) { %>
+                    <div class="card mb-1">
+                        <div class="p-1 px-3">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="h6"><%= trainingField.course %></div>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <%= trainingField.duration %>
+                                </div>
+                                </div>
+                            <div><span class="h6">Institute: </span><%= trainingField.institute %></div>
+                            <h5 class="card-text"><span class="h6">Key Skills: </span><span
+                                    class="badge rounded-pill bg-dark"><%= trainingField.skills %></span></h5>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        <% } %>
+        
+
+        <div class="card mb-3">
+            <div class="text-white rounded bg-dark p-1">
+                <div class="h5 px-1 mx-1">Hobbies</div>
+            </div>
+            <div class="px-3">
+                <%= resume.hobbies %>
+            </div>
+        </div>
+
+        <% if ( resume.link.length != 0) { %>
+            <div class="card mb-3">
+                <div class="text-white rounded bg-dark p-1">
+                    <div class="h5 px-1 mx-1">Web Links</div>
+                </div>
+                
+                <div class="px-3">
+                    <% for (let linkField of resume.link) { %>
+                        <div><%= linkField.title %>- <a href="<%= linkField.url %>"><%= linkField.url %></a></div>
+                    <% } %>
+                </div>
+            </div>
+        <% } %>
+        
+
+        <div class="card mb-3">
+            <div class="text-white rounded bg-dark p-1">
+                <div class="h5 px-1 mx-1">Personal Details</div>
+            </div>
+            <div class="px-3">
+                <div class="row">
+                    <div class="col-6">
+                        <div><strong>Gender: </strong><%= resume.gender %></div>
+                        <div><strong>Marital Status: </strong><%= resume.maritalStatus %></div>
+                        <div><strong>Current Address: </strong><%= resume.address %></div>
+                    </div>
+                    <div class="col-6">
+                        <div><strong>Date of Birth: </strong><%= resume.dob %></div>
+                        <div><strong>Known Languages: </strong><%= resume.languages %></div>
+                        <div><strong>Phone Number: </strong><%= resume.phone %></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>

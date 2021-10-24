@@ -1,0 +1,29 @@
+<%- include("../partials/header") %>
+
+<div class="row">
+        <h1 class="card-title">My Resumes</h1>
+        <% for (let resume of resumeList){ %>
+            <div class="card px-5 py-3 mb-3">    
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="card-title">
+                            <%= resume.name %>
+                        </h4>
+                        <div class="card-text">
+                            <%= resume.specialisation %>
+                        </div>
+                    </div>
+                    <div class="col-md-6 float-md-end text-end">
+                        <a href="/resumes/<%= resume._id %>"><button type="button" class="btn btn-primary mr-1">View</button></a>
+                        <a href="/resumes/<%= resume._id %>/edit"><button type="button" class="btn btn-warning mx-1">Edit</button></a>
+                        <a href="/resumes/<%= resume._id %>/pdf"><button type="button" class="btn btn-info mx-1">PDF</button></a>
+                        <form class="d-inline" action="/resumes/<%= resume._id %>?_method=DELETE " method="POST">
+                            <button class="card-link btn btn-danger mx-1">Delete</button>
+                       </form>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+</div>
+
+<%- include("../partials/footer") %>

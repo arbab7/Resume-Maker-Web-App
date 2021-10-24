@@ -1,0 +1,128 @@
+<%- include("../partials/header") %>
+
+    <div class="row">
+        <h1 class=" text-center display-5">New Resume</h1>
+        <div class="col-6 offset-3">
+            <form action="/resumes" method="POST" novalidate class="needs-validation">
+                <div class="card p-4 mb-3">
+                    <h1 class="display-6">Basic Details</h1>
+                    <div class="mb-3">
+                        <label class="form-label" for="name">Name</label>
+                        <input class="form-control" type="text" name="name" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="specialisation">Specialisation</label>
+                        <input class="form-control" type="text" name="specialisation" id="specialisation" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="summary">Career Summary</label>
+                        <textarea class="form-control" name="summary" id="summary" required></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label" for="gender">Gender</label>
+                            <select class="form-select" name="gender" aria-label="gender">
+                                <option selected>Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label" for="dob">Date of Birth</label>
+                            <input class="form-control" type="text" name="dob" id="dob" placeholder="dd/mm/yyyy"
+                                required>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label class="form-label" for="marital status">Marital Status</label>
+                            <select class="form-select" name="maritalStatus" aria-label="marital status">
+                                <option selected>Select Marital Status</option>
+                                <option value="married">Married</option>
+                                <option value="unmarried">Unmarried</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="known-lang">Known Languages</label>
+                        <input class="form-control" type="text" name="languages" id="known-lang" required>
+                    </div>
+                </div>
+
+                <div class="card p-4 mb-3">
+                    <h1 class="display-6">Contact Details</h1>
+                    <div class="row">
+                        <div class="col-md-7 mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" type="text" name="email" id="email" required>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label class="form-label" for="phone">Phone</label>
+                            <input class="form-control" type="text" name="phone" id="phone" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="address">Address</label>
+                        <input class="form-control" type="text" name="address" id="address" required>
+                    </div>
+                </div>
+
+                <div class="card p-4 mb-3" id="education">
+                    <h1 class="display-6">Education</h1>
+                    <div class="mx-1">
+                        <button type="button" class="btn btn-dark float-md-end" id="edu-add-button">Add
+                            field</button>
+                    </div>
+                </div>
+
+
+
+                <div class="card p-4 mb-3" id="projects">
+                    <h1 class="display-6">Projects</h1>
+                    <div class="mx-1">
+                        <button type="button" class="btn btn-dark float-md-end" id="project-add-button">Add
+                            field</button>
+                    </div>
+                </div>
+
+
+                <div class="card p-4 mb-3" id="trainings">
+                    <h1 class="display-6">Trainings</h1>
+                    <div class="mx-1">
+                        <button type="button" class="btn btn-dark float-md-end" id="training-add-button">Add
+                            field</button>
+                    </div>
+                </div>
+
+
+                <div class="card p-4 mb-3">
+                    <h1 class="display-6">Additional Details</h1>
+                    <div class="mb-3">
+                        <label class="form-label" for="hobbies">Hobbies</label>
+                        <input class="form-control" type="text" name="hobbies" id="hobbies" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="web-links">Web links</label>
+                        <div class="card p-4 mb-3" id="web-links">
+                            <div class="mx-1">
+                                <button type="button" class="btn btn-dark float-md-end" id="web-link-add-button">Add
+                                    field</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btn btn-success">Submit</button>
+                </div>
+
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <%- include("../partials/footer") %>

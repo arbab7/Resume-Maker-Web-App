@@ -1,0 +1,236 @@
+<%- include("../partials/header") %>
+
+    <div class="row">
+        <h1 class=" text-center display-5">Edit Resume</h1>
+        <div class="col-6 offset-3">
+            <form action="/resumes/<%= resume._id %>/?_method=PATCH" method="POST" novalidate class="needs-validation">
+                <div class="card p-4 mb-3">
+                    <h1 class="display-6">Basic Details</h1>
+                    <div class="mb-3">
+                        <label class="form-label" for="name">Name</label>
+                        <input class="form-control" type="text" name="name" id="name" value="<%= resume.name %>"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="specialisation">Specialisation</label>
+                        <input class="form-control" type="text" name="specialisation" id="specialisation"
+                            value="<%= resume.specialisation %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="summary">Career Summary</label>
+                        <textarea class="form-control" name="summary" id="summary" required><%= resume.summary %></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label" for="gender">Gender</label>
+                            <select class="form-select" name="gender" aria-label="gender">
+                                <option>Select Gender</option>
+                                <option value="male" <%=resume.gender=="male" ? 'selected' : "" %>>Male</option>
+                                <option value="female" <%=resume.gender=="female" ? 'selected' : "" %>>Female</option>
+                                <option value="other" <%=resume.gender=="other" ? 'selected' : "" %>>Other</option>
+                            </select>
+
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label" for="dob">Date of Birth</label>
+                            <input class="form-control" type="text" name="dob" id="dob" value="<%= resume.dob %>"
+                                placeholder="dd/mm/yyyy" required>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label class="form-label" for="marital status">Marital Status</label>
+                            <select class="form-select" name="maritalStatus" aria-label="marital status">
+                                <option>Select Marital Status</option>
+                                <option value="married" <%=resume.maritalStatus=="married" ? 'selected': "" %>>Married
+                                </option>
+                                <option value="unmarried" <%=resume.maritalStatus=="unmarried" ? 'selected': "" %>
+                                    >Unmarried</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="known-lang">Known Languages</label>
+                        <input class="form-control" type="text" name="languages" id="known-lang"
+                            value="<%= resume.languages %>" required>
+                    </div>
+                </div>
+
+                <div class="card p-4 mb-3">
+                    <h1 class="display-6">Contact Details</h1>
+                    <div class="row">
+                        <div class="col-md-7 mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" type="text" name="email" id="email" value="<%= resume.email %>"
+                                required>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label class="form-label" for="phone">Phone</label>
+                            <input class="form-control" type="text" name="phone" id="phone" value="<%= resume.phone %>"
+                                required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="address">Address</label>
+                        <input class="form-control" type="text" name="address" id="address"
+                            value="<%= resume.address %>" required>
+                    </div>
+                </div>
+
+                <div class="card p-4 mb-3" id="education">
+                    <h1 class="display-6">Education</h1>
+                    <% for (let i in resume.education) { %>
+                        <div class="card p-2 mb-2 educationField">
+                            <div class="mb-3">
+                                <label class="form-label" for="edu-course">Course</label>
+                                <input class="form-control" type="text" name="education[<%= i %>][course]"
+                                    id="edu-course" value="<%= resume.education[i].course %>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="edu-institute">Institute</label>
+                                <input class="form-control" type="text" name="education[<%= i %>][institute]"
+                                    id="edu-institute" value="<%= resume.education[i].institute %>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="edu-duration">Duration</label>
+                                <input class="form-control" type="text" name="education[<%= i %>][duration]"
+                                    id="edu-duration" value="<%= resume.education[i].duration %>" placeholder="Start date - End date" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="edu-percentage">Percentage</label>
+                                <input class="form-control" type="text" name="education[<%= i %>][percentage]"
+                                    id="edu-percentage" value="<%= resume.education[i].percentage %>" required>
+                            </div>
+                            <div class="mg-3 mx-1">
+                                <button type="button" class="btn btn-danger"
+                                    id="edu-delete-button<%= i %>">Delete</button>
+                            </div>
+                        </div>
+                    <% } %>
+
+                    <div class="mg-3 mx-1">
+                        <button type="button" class="btn btn-dark float-md-end" id="edu-add-button">Add
+                            field</button>
+                    </div>
+                </div>
+
+
+
+                <div class="card p-4 mb-3" id="projects">
+                    <h1 class="display-6">Projects</h1>
+                    <% for (let i in resume.project) { %>
+                        <div class="card p-2 mb-2 projectField">
+                            <div class="mb-3">
+                                <label class="form-label" for="project-title">Title</label>
+                                <input class="form-control" type="text" name="project[<%= i %>][title]" id="project-title" value="<%= resume.project[i].title %>"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="project-key-skills">Key Skills</label>
+                                <input class="form-control" type="text" name="project[<%= i %>][skills]" id="project-key-skills" value="<%= resume.project[i].title %>"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="project-duration">Duration</label>
+                                <input class="form-control" type="text" name="project[<%= i %>][duration]" id="project-duration" value="<%= resume.project[i].title %>" placeholder="Start date - End date"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="project-description" class="form-label">Description</label>
+                                <textarea class="form-control" name="project[<%= i %>][description]" id="project-description" rows="3"><%= resume.project[i].description %></textarea>
+                            </div>
+                            <div class="mg-3 mx-1">
+                                <button type="button" class="btn btn-danger" id="project-delete-button<%= i %>">Delete</button>
+                            </div>
+                        </div>
+                    <% } %>
+
+
+                    <div class="mg-3 mx-1">
+                        <button type="button" class="btn btn-dark float-md-end" id="project-add-button">Add
+                            field</button>
+                    </div>
+                </div>
+
+
+                <div class="card p-4 mb-3" id="trainings">
+                    <h1 class="display-6">Trainings</h1>
+                    <% for (let i in resume.training) { %>
+                        <div class="card p-2 mb-2 trainingfield">
+                            <div class="mb-3">
+                                <label class="form-label" for="training-course">Course</label>
+                                <input class="form-control" type="text" name="training[<%= i %>][course]" id="training-course" value="<%= resume.training[i].course %>"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="training-institute">Institute</label>
+                                <input class="form-control" type="text" name="training[<%= i %>][institute]" id="training-institute" value="<%= resume.training[i].institute %>"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="training-key-skills">Key skills</label>
+                                <input class="form-control" type="text" name="training[<%= i %>][skills]" id="training-key-skills" value="<%= resume.training[i].skills %>"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="training-duration">Duration</label>
+                                <input class="form-control" type="text" name="training[<%= i %>][duration]" id="training-duration" value="<%= resume.training[i].duration %>" placeholder="Start date - End date"
+                                    required>
+                            </div>   
+                            <div class="mg-3 mx-1">
+                                <button type="button" class="btn btn-danger" id="training-delete-button<%= i %>">Delete</button>
+                            </div>
+                        </div>
+                    <% } %>
+
+                    <div class="mg-3 mx-1">
+                        <button type="button" class="btn btn-dark float-md-end" id="training-add-button">Add
+                            field</button>
+                    </div>
+                </div>
+
+
+                <div class="card p-4 mb-3">
+                    <h1 class="display-6">Additional Details</h1>
+                    <div class="mb-3">
+                        <label class="form-label" for="hobbies">Hobbies</label>
+                        <input class="form-control" type="text" name="hobbies" id="hobbies" value="<%= resume.hobbies%>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="web-links">Web links</label>
+                        <div class="card p-4 mb-3" id="web-links">
+                            <% for (let i in resume.link) { %>
+                                <div class="row mb-3 linkField">
+                                    <div class="col-md-3">                                   
+                                        <input class="form-control" type="text" name="link[<%= i %>][title]" id="web-link-title" value="<%= resume.link[i].title %>" placeholder="name" required>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input class="form-control" type="text" name="link[<%= i %>][url]" id="web-link-url" value="<%= resume.link[i].url %>" placeholder="url" required>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="mg-3 mx-1 mt-1">
+                                            <button type="button" class="btn btn-danger btn-sm" id="link-delete-button<%= i %>">X</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+                            <div class="mg-3 mx-1">
+                                <button type="button" class="btn btn-dark float-md-end" id="web-link-add-button">Add
+                                    field</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mg-3">
+                    <button class="btn btn-success">Submit</button>
+                </div>
+
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <%- include("../partials/footer") %>
