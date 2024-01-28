@@ -1,0 +1,11 @@
+version: '3.2'
+
+services:
+
+  resume-maker:
+    build:
+      context: ../
+      dockerfile: deployment/Dockerfile
+    image: resume-maker
+    ports:
+      - ${PORT}:${PORT}
