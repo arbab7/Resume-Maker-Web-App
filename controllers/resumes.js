@@ -51,7 +51,8 @@ module.exports.generatePDF = async (req, res, next) => {
     const url = req.protocol + '://' + req.get('host') + `/resumes/${req.params.id}/thisshouldbeabettersecret/tempgeneratePDF`;
     
     const browser = await puppeteer.launch({
-        headless: true
+        headless: true,
+        args: ['--ignore-certificate-errors']
     });
 
     const webPage = await browser.newPage();
