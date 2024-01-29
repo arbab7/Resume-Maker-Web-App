@@ -49,7 +49,8 @@ WORKDIR /resume-maker
 
 RUN npm config set strict-ssl false
 
-RUN export NODE_TLS_REJECT_UNAUTHORIZED=0; \
+RUN rm -rf node_modules; \
+    export NODE_TLS_REJECT_UNAUTHORIZED=0; \
     npm install
 
 USER nobody
